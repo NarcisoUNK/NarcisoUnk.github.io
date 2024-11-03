@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hello! I'm Rafael Narciso. Computer Science Student based in Portugal. I like coding, Data Analysis and hacking. Check out my portfolio!">
     <title>Rafael Conceição Narciso | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
     <!-- Favicon    -->
     <meta name="apple-mobile-web-app-title" content="Portfolio">
     <meta name="application-name" content="Portfolio">
@@ -69,10 +69,9 @@
                     </li>
                     <li>
                         <a href="#" title="Contact">Contact</a>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
 
         <!-- END MAIN MENU -->
 
@@ -103,7 +102,7 @@
                     <!-- single project -->
                     <div class="project-grid-card web-development">
                         <h2>Automation RuneScape</h2>
-                        <a href="works/AutomationScripts/AutomationScripts.html" title="Suity Bot">
+                        <a href="works/AutomationScripts/AutomationScripts.html" title="Automation RuneScape">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/bannerrunescape.webp">
                             </div>
@@ -111,9 +110,8 @@
                     </div>
                     <!-- single project -->
                     <div class="project-grid-card web-development">
-                        <h2>Forum Digimon 
-						</h2>		
-					<a href="works/digimonforum.html" title="Digimon Forum">
+                        <h2>Forum Digimon</h2>
+                        <a href="works/digimonforum.html" title="Digimon Forum">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/ForumDigimon.webp">
                             </div>
@@ -122,21 +120,25 @@
                     <!-- single project -->
                     <div class="project-grid-card others">
                         <h2>Word Search</h2>
-                        <a href="" title="">
+                        <a href="#" title="Word Search">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/searchbanner.webp">
                             </div>
                         </a>
+                        <p class="maintenance-message">This project is currently under maintenance.</p>
                     </div>
                     <!-- single project -->
                     <div class="project-grid-card ethical-hacking">
                         <h2>Sokoban</h2>
-                        <a href="photography/index.html" title="Photography">
+                        <a href="#" title="Sokoban">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/sokobanbanner.webp">
                             </div>
                         </a>
+                        <p class="maintenance-message">This project is currently under maintenance.</p>
                     </div>
+                </div>
+                <p class="no-projects-message" style="display: none;">No projects available for this category yet.</p>
             </div>
         </section>
     </main>
@@ -146,10 +148,10 @@
                 <span id="signature">Made by Narciso </span>
             </div>
             <div class="other-links">
-                <a href="https://www.instagram.com/diogofreitascastro/" title="instagram" target="_blank">
-                    <img loading="lazy" src="../images/instagram-logo.svg">
+                <a href="https://x.com/Rafael_Nar1" title="instagram" target="_blank">
+                    <img loading="lazy" src="/images/twitter-svgrepo-com.svg">
                 </a>
-                <a href="hhttps://github.com/NarcisoUNK" title="github" target="_blank">
+                <a href="https://github.com/NarcisoUNK" title="github" target="_blank">
                     <img loading="lazy" src="images/github-svgrepo-com.svg">
                 </a>
             </div>
@@ -157,16 +159,35 @@
     </footer>
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../js/jquery.js"></script>
-    <script src="../js/vendor.js"></script>
-    <script src="../js/foundation.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/app.js"></script>
     <script>
         $(document).ready(function() {
             $('.filters li').click(function() {
                 var filter = $(this).data('filter');
-                $('.project-grid-card').hide();
-                $('.project-grid-card.' + filter).show();
+                var hasProjects = false;
+                $('.project-grid-card').each(function() {
+                    if ($(this).hasClass(filter)) {
+                        $(this).show();
+                        hasProjects = true;
+                    } else {
+                        $(this).hide();
+                    }
+                });
+                if (!hasProjects) {
+                    $('.no-projects-message').show();
+                } else {
+                    $('.no-projects-message').hide();
+                }
+            });
+
+            // Check for projects without links and show maintenance message
+            $('.project-grid-card a').each(function() {
+                if ($(this).attr('href') === '#') {
+                    $(this).siblings('.maintenance-message').show();
+                }
             });
         });
     </script>
