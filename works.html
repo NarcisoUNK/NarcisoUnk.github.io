@@ -120,22 +120,20 @@
                     <!-- single project -->
                     <div class="project-grid-card others">
                         <h2>Word Search</h2>
-                        <a href="#" title="Word Search">
+                        <a href="#" title="Word Search" class="maintenance-link">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/searchbanner.webp">
                             </div>
                         </a>
-                        <p class="maintenance-message">This project is currently under maintenance.</p>
                     </div>
                     <!-- single project -->
                     <div class="project-grid-card ethical-hacking">
                         <h2>Sokoban</h2>
-                        <a href="#" title="Sokoban">
+                        <a href="#" title="Sokoban" class="maintenance-link">
                             <div class="project-image-holder">
                                 <img loading="lazy" src="images/sokobanbanner.webp">
                             </div>
                         </a>
-                        <p class="maintenance-message">This project is currently under maintenance.</p>
                     </div>
                 </div>
                 <p class="no-projects-message" style="display: none;">No projects available for this category yet.</p>
@@ -184,10 +182,9 @@
             });
 
             // Check for projects without links and show maintenance message
-            $('.project-grid-card a').each(function() {
-                if ($(this).attr('href') === '#') {
-                    $(this).siblings('.maintenance-message').show();
-                }
+            $('.maintenance-link').click(function(event) {
+                event.preventDefault();
+                alert("This project is currently under maintenance.");
             });
         });
     </script>
